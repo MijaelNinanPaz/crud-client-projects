@@ -3,7 +3,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { ProjectsTable } from './ProjectsTable';
 import { DialogAddProject } from './DialogAddProject';
-import DataGridDemo from './ProjectsTable/DataGridDemo';
+import DataGridProjects from './ProjectsTable/DataGridProjects';
 
 const Projects = () => {
     const [openAddProject, setOpenAddProject] = React.useState(false);
@@ -17,8 +17,8 @@ const Projects = () => {
 
     return (
         <>
-            <ProjectsTable />
-            {/* <DataGridDemo /> */}
+            {/* <ProjectsTable /> */}
+            <DataGridProjects />
             <Fab
                 color="primary"
                 aria-label="add"

@@ -33,8 +33,9 @@ function App() {
       <CssBaseline />
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
-          <PersistentDrawer />
-          {/* <Projects /> */}
+          <PersistentDrawer>
+            <Projects />
+          </PersistentDrawer>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </>

@@ -75,7 +75,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-const PersistentDrawer = () => {
+const PersistentDrawer = ({children}) => {
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -311,7 +311,7 @@ const PersistentDrawer = () => {
 		</Drawer>
 		<DrawerMain open={open}>
 			<DrawerHeader />
-			<Projects />
+			{children}
 		</DrawerMain>
 	</Box>
 	);

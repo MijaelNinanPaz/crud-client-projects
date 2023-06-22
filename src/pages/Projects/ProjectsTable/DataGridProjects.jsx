@@ -4,6 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { styled } from '@mui/material/styles';
 import { useFetch } from '../../../services/hooks/useFetch';
 import { useSelector } from 'react-redux';
+import { projects } from '../../../data/projects';
+import { Button } from '@mui/material';
 
 const DataGridFixed = styled(DataGrid)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#000000' : '#fff',
@@ -18,71 +20,71 @@ const columns = [
   {
     field: 'location',
     headerName: 'Location',
-    width: 150,
+    width: 800,
     editable: true,
   },
   {
     field: 'projectName',
     headerName: 'Project name',
-    width: 150,
+    width: 800,
     editable: true,
   },
-  {
-    field: 'utilityProviders',
-    headerName: 'Utility providers',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'designConditions',
-    headerName: 'Design conditions',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'dwellingInfo',
-    headerName: 'Dwelling info',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
-  {
-    field: 'workscope',
-    headerName: 'Workscope',
-    type: 'number',
-    width: 110,
-    editable: true,
-  },
+  // {
+  //   field: 'utilityProviders',
+  //   headerName: 'Utility providers',
+  //   type: 'number',
+  //   width: 110,
+  //   editable: true,
+  // },
+  // {
+  //   field: 'designConditions',
+  //   headerName: 'Design conditions',
+  //   type: 'number',
+  //   width: 110,
+  //   editable: true,
+  // },
+  // {
+  //   field: 'dwellingInfo',
+  //   headerName: 'Dwelling info',
+  //   type: 'number',
+  //   width: 110,
+  //   editable: true,
+  // },
+  // {
+  //   field: 'workscope',
+  //   headerName: 'Workscope',
+  //   type: 'number',
+  //   width: 110,
+  //   editable: true,
+  // },
   {
     field: 'dateCreated',
     headerName: 'Date created',
     type: 'number',
-    width: 110,
+    width: 300,
     editable: true,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
+  }
 ];
 
-const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
 
-export default function DataGridDemo() {
-  const { 
-    loading,
-    error,
-    handleCancelRequest
-  } = useFetch(url)
+export default function DataGridProjects() {
+  // const { 
+	// 	loading,
+	// 	error,
+	// 	handleCancelRequest
+	// } = useFetch('projects')
 
-  const projects = useSelector( state => state.projects.list )
+	// const { 
+	// 	loading,
+	// 	errorGet,
+	// 	handleCancelRequest
+	// } = dispatch(getData('projects'))
+	
+	// const projects = useSelector( state => state.projects.list )
+
+  const loading = false;
+	const error = null;
+	const handleCancelRequest = () => console.log("Request cancelled");
 
   return (
     <>
@@ -102,7 +104,7 @@ export default function DataGridDemo() {
           checkboxSelection
           disableRowSelectionOnClick
         />
-        <button onClick={handleCancelRequest}>Cancel Request</button>
+        <Button onClick={handleCancelRequest}>Cancel Request</Button>
     </>
   );
 }
