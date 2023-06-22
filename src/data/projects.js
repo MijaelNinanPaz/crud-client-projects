@@ -1,35 +1,27 @@
 export const projects = [
     {
         id: 1,
-        name: 'james',
-        last_name: 'Brown',
-        phone: '123-456-7890',
-        email: 'james@james.com',
-        address: '123 Main St',
+        location: '123 Main St',
+        projectName: 'project test',
+        dateCreated: '2022-01-01',
     },
     {
         id: 2,
-        name: 'james',
-        last_name: 'Brown',
-        phone: '123-456-7890',
-        email: 'james@james.com',
-        address: '123 Main St',
+        location: '123 Main St',
+        projectName: 'project test',
+        dateCreated: '2022-01-01',
     },
     {
         id: 3,
-        name: 'james',
-        last_name: 'Brown',
-        phone: '123-456-7890',
-        email: 'james@james.com',
-        address: '123 Main St',
+        location: '123 Main St',
+        projectName: 'project test',
+        dateCreated: '2022-01-01',
     },
     {
         id: 4,
-        name: 'james',
-        last_name: 'Brown',
-        phone: '123-456-7890',
-        email: 'james@james.com',
-        address: '123 Main St',
+        location: '123 Main St',
+        projectName: 'project test',
+        dateCreated: '2022-01-01',
     }
 
 ]

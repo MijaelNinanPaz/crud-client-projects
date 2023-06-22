@@ -12,8 +12,9 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { GoogleMapDirection } from '../../../components';
 import { useDispatch } from 'react-redux';
-import { postProject } from '../../../state/redux/projects/projectSlice';
-import { usePost } from '../../../services/hooks/usePost';
+import postData from '../../../services/postData';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+
 
 const Item = styled(Box)(({ theme }) => ({
 	padding: theme.spacing(1),
@@ -29,13 +30,27 @@ const ItemMap = styled(Paper)(({ theme }) => ({
 
 const DialogAddProject = ({ open, handleClose }) => {
 	const [projectData, setProjectData] = useState({
-        name: "",
-        last_name: "",
-        phone: "",
-        mail: ""
+        id: '',
+        location: '',
+        projectName: '',
+        // utilityProviders: {
+		// 	electricUtilityProvider: '',
+		// 	fossilFuelUtilityProvider: ''
+		// },
+		electricUtilityProvider: '',
+		fossilFuelUtilityProvider: ''
+
+        // designConditions: '',
+        // dwellingInfo: '',
+        // workscope: '',
+        // dateCreated: ''
     });
-    const [address, setAddress] = useState(null)
-    // const loading = useSelector( state => state.projects.loadingPost )
+    const [location, setLocation] = useState({})
+    const [postStatus, setPostStatus] = useState({
+		loading: false,
+		error: null,
+		controller:null
+	})
 
     const handleInputChange = e => {
         setProjectData({
@@ -50,16 +65,18 @@ const DialogAddProject = ({ open, handleClose }) => {
         e.preventDefault();
         const newProject = {
             ...projectData,
-            address
+			// location
+            location: {
+				type: "Point",
+				coordinates: [
+					40.749933,
+					-73.98633
+				]
+			}
         }
         console.log(newProject);
 
-        const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
-		const { 
-			loading,
-			error,
-			handleCancelRequest
-		} = usePost(url, newProject)
+		// const handleCancelRequest = dispatch(postData('projects', newProject, setPostStatus, postStatus))
 
         handleClose();
     };
@@ -88,73 +105,73 @@ const DialogAddProject = ({ open, handleClose }) => {
 				<Box sx={{ flexGrow: 1 }}>
 					<form onSubmit={handleSubmit}>
 						<Grid container spacing={2}>
-							<Grid item xs={12} md={3}>
+							<Grid item xs={12} md={4}>
 								<Item>
 									<TextField
 										autoFocus
 										margin="dense"
-										id="name"
-										name="name"
-										label="Name"
+										id="projectName"
+										name="projectName"
+										label="Project name"
 										type="text"
 										fullWidth
 										variant="standard"
-										value={projectData.name}
+										value={projectData.projectName}
 										onChange={handleInputChange}
 									/>
 								</Item>
 							</Grid>
-							<Grid item xs={12} md={3}>
+							<Grid item xs={12} md={4}>
 								<Item>
-									<TextField
-										autoFocus
-										margin="dense"
-										id="last_name"
-										name="last_name"
-										label="Last name"
-										type="text"
-										fullWidth
-										variant="standard"
-										value={projectData.last_name}
-										onChange={handleInputChange}
-									/>
+									<FormControl fullWidth>
+										<InputLabel id="electricUtilityProvider">Electric Utility provider</InputLabel>
+										<Select
+											autoFocus
+											margin="dense"
+											labelId="electricUtilityProvider"
+											id="electricUtilityProvider"
+											name="electricUtilityProvider"
+											label="Electric Utility providers"
+											type="text"
+											fullWidth
+											// variant="standard"
+											value={projectData.electricUtilityProvider}
+											onChange={handleInputChange}
+										>
+											<MenuItem value={'electric1'}>electric1</MenuItem>
+											<MenuItem value={'electric2'}>electric2</MenuItem>
+											<MenuItem value={'electric3'}>electric3</MenuItem>
+										</Select>
+									</FormControl>
 								</Item>
 							</Grid>
-							<Grid item xs={12} md={3}>
+							<Grid item xs={12} md={4}>
 								<Item>
-									<TextField
-										autoFocus
-										margin="dense"
-										id="phone"
-										name="phone"
-										label="Phone"
-										type="text"
-										fullWidth
-										variant="standard"
-										value={projectData.phone}
-										onChange={handleInputChange}
-									/>
-								</Item>
-							</Grid>
-							<Grid item xs={12} md={3}>
-								<Item>
-									<TextField
-										autoFocus
-										margin="dense"
-										id="mail"
-										name="mail"
-										label="Email Address"
-										type="email"
-										fullWidth
-										variant="standard"
-										value={projectData.mail}
-										onChange={handleInputChange}
-									/>
+									<FormControl fullWidth>
+										<InputLabel id="fossilFuelUtilityProvider">Fossil Fuel Utility provider</InputLabel>
+										<Select
+											autoFocus
+											margin="dense"
+											labelId="fossilFuelUtilityProvider"
+											id="fossilFuelUtilityProvider"
+											name="fossilFuelUtilityProvider"
+											label="Utility providers"
+											type="text"
+											fullWidth
+											// variant="standard"
+											value={projectData.fossilFuelUtilityProvider}
+											onChange={handleInputChange}
+										>
+											<MenuItem value={'fossilFuel1'}>fossilFuel1</MenuItem>
+											<MenuItem value={'fossilFuel2'}>fossilFuel2</MenuItem>
+											<MenuItem value={'fossilFuel3'}>fossilFuel3</MenuItem>
+										</Select>
+									</FormControl>
 								</Item>
 							</Grid>
 							<Grid item xs={12} md={12}>
 								<ItemMap>
-									<GoogleMapDirection setGeoJson={setAddress} />
+									<GoogleMapDirection setGeoJson={setLocation} />
 								</ItemMap>
 							</Grid>
 						</Grid>

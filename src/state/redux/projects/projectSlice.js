@@ -48,7 +48,7 @@ export const {
 
 export default projectSlice.reducer
 
-const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
+// const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
 
 // //POST
 // export const postProject = (data) => (dispatch) => {

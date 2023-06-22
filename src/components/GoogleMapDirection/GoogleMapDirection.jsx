@@ -61,7 +61,6 @@ const GoogleMapDirection = ({ setGeoJson }) => {
                 infowindow.open(map, marker);
 
                 //TESTTTTTTT GEOJSON
-                // Capture los datos de la ubicación seleccionada y envíelos como GeoJSON
                 // const locationData = {
                 //     type: "Feature",
                 //     geometry: {
@@ -137,6 +136,7 @@ const GoogleMapDirection = ({ setGeoJson }) => {
         // Cargar el script de la API de Google Maps
         const gmpsKey = import.meta.env.VITE_GMPS_KEY;
         const script = document.createElement('script');
+        script.src = null
         script.src = `https://maps.googleapis.com/maps/api/js?key=${gmpsKey}&callback=initMap&libraries=places&v=weekly`;
         script.defer = true;
         document.head.appendChild(script);

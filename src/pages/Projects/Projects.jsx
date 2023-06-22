@@ -1,13 +1,12 @@
 import React from 'react'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { ProjectsTable } from './ProjectsTable'
-import DialogAddProject from './DialogAddProject/DialogAddProject';
+import { ProjectsTable } from './ProjectsTable';
+import { DialogAddProject } from './DialogAddProject';
 import DataGridDemo from './ProjectsTable/DataGridDemo';
 
 const Projects = () => {
     const [openAddProject, setOpenAddProject] = React.useState(false);
-
     const handleClickOpen = () => {
         setOpenAddProject(true);
     };

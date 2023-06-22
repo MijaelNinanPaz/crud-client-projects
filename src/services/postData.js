@@ -1,45 +1,43 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addProject } from "../../state/redux/projects/projectSlice";
+import { addProject } from "../state/redux/projects/projectSlice";
+import { getUrl } from "./api/getUrl";
 
+const postData = (src, data, setPostStatus, postStatus) => (dispatch) => {
+    
+    const abortController = new AbortController();
 
-export function postData(url, data) {
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [controller, setController] = useState(null)
+    setPostStatus({
+        loading: true,
+        error: null,
+        controller: abortController
+    })
 
-    const dispatch = useDispatch();
-
-
-        const abortController = new AbortController();
-        setController(abortController);
-        setLoading(true);
-        fetch( url, {
-            method: 'POST',
-            signal: abortController.signal,
-            headers: {
-                // Accept: 'application/json',
-                'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify(data)
+    fetch( getUrl(src), {
+        method: 'POST',
+        signal: abortController.signal,
+        headers: {
+            // Accept: 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    })
+        .then( response => response.json())
+        .then( data => dispatch(addProject(data)))
+        .catch( error => {
+            if(error.name === "AbortError") {
+                console.log("Request cancelled");
+            } else {
+                setPostStatus({...postStatus, error })
+            }
         })
-            .then( response => response.json())
-            .then( data => dispatch(addProject(data)))
-            .catch( error => {
-                if(error.name === "AbortError") {
-                    console.log("Request cancelled");
-                } else {
-                    setError(error)
-                }
-            })
-            .finally(() => setLoading(false))
+        .finally(() => setPostStatus({...postStatus, loading: false }))
 
     const handleCancelRequest = () => {
-        if(controller){
-            controller.abort();
-            setError("Request cancelled");
+        if(abortController){
+            abortController.abort();
+            setPostStatus({...postStatus, error: "Request cancelled" });
         }
     }
-    return { loading, error, handleCancelRequest }
+    return handleCancelRequest
 }
+export default postData;

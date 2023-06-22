@@ -1,2 +1,3 @@
-export * from './projects/ProjectsTable';
-export * from './projects';
+export * from './Projects/DialogAddProject';
+export * from './Projects/ProjectsTable';
+export * from './Projects';
