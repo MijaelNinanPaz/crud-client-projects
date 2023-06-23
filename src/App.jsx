@@ -3,7 +3,7 @@ import { PersistentDrawer } from './components'
 import CssBaseline from '@mui/material/CssBaseline';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
-import { Projects } from './pages';
+import { PageSwitcher } from './pages';
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -34,7 +34,7 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <PersistentDrawer>
-            <Projects />
+            <PageSwitcher />
           </PersistentDrawer>
         </ThemeProvider>
       </ColorModeContext.Provider>

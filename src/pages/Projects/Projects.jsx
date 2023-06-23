@@ -2,36 +2,23 @@ import React from 'react'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { ProjectsTable } from './ProjectsTable';
-import { DialogAddProject } from './DialogAddProject';
 import DataGridProjects from './ProjectsTable/DataGridProjects';
+import { Box, Button } from '@mui/material';
 
 const Projects = () => {
-    const [openAddProject, setOpenAddProject] = React.useState(false);
-    const handleClickOpen = () => {
-        setOpenAddProject(true);
-    };
 
-    const handleClose = () => {
-        setOpenAddProject(false);
-    };
-
+    const onClickNew = () => {
+        console.log("holi")
+    }
     return (
         <>
+            <Box display="flex" justifyContent="flex-end" onClick={onClickNew}>
+                <Button variant="contained" color="primary">
+                    + New
+                </Button>
+            </Box>
             {/* <ProjectsTable /> */}
             <DataGridProjects />
-            <Fab
-                color="primary"
-                aria-label="add"
-                sx={{
-                    position: "absolute",
-                    bottom: 16,
-                    right: 18,
-                }}
-                onClick={handleClickOpen}
-            >
-                <AddIcon />
-            </Fab>
-            <DialogAddProject open={openAddProject} handleClose={handleClose}/>
         </>
     )
 }

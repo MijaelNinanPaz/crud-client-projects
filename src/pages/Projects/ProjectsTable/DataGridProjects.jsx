@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 
 import { styled } from '@mui/material/styles';
 import { useFetch } from '../../../services/hooks/useFetch';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { projects } from '../../../data/projects';
 import { Button } from '@mui/material';
 
@@ -20,13 +20,13 @@ const columns = [
   {
     field: 'location',
     headerName: 'Location',
-    width: 800,
+    width: 200,
     editable: true,
   },
   {
     field: 'projectName',
     headerName: 'Project name',
-    width: 800,
+    width: 200,
     editable: true,
   },
   // {
