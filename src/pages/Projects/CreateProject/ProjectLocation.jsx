@@ -13,7 +13,7 @@ import Grid from '@mui/material/Grid';
 import { GoogleMapDirection } from '../../../components';
 import { useDispatch } from 'react-redux';
 import postData from '../../../services/postData';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 
 
 const Item = styled(Box)(({ theme }) => ({
@@ -85,6 +85,13 @@ const ProjectLocation = () => {
 		<Box sx={{ flexGrow: 1 }}>
 			<form onSubmit={handleSubmit}>
 				<Grid container spacing={2}>
+					<Grid item xs={12} md={12}>
+						<Item>
+						<Typography variant="h2" gutterBottom>
+							Location
+						</Typography>
+						</Item>
+					</Grid>
 					<Grid item xs={12} md={4}>
 						<Item>
 							<TextField
@@ -102,57 +109,75 @@ const ProjectLocation = () => {
 						</Item>
 					</Grid>
 					<Grid item xs={12} md={4}>
-						<Item>
-							<FormControl fullWidth>
-								<InputLabel id="electricUtilityProvider">Electric Utility provider</InputLabel>
-								<Select
-									autoFocus
-									margin="dense"
-									labelId="electricUtilityProvider"
-									id="electricUtilityProvider"
-									name="electricUtilityProvider"
-									label="Electric Utility providers"
-									type="text"
-									fullWidth
-									// variant="standard"
-									value={projectData.electricUtilityProvider}
-									onChange={handleInputChange}
-								>
-									<MenuItem value={'electric1'}>electric1</MenuItem>
-									<MenuItem value={'electric2'}>electric2</MenuItem>
-									<MenuItem value={'electric3'}>electric3</MenuItem>
-								</Select>
-							</FormControl>
-						</Item>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<Item>
-							<FormControl fullWidth>
-								<InputLabel id="fossilFuelUtilityProvider">Fossil Fuel Utility provider</InputLabel>
-								<Select
-									autoFocus
-									margin="dense"
-									labelId="fossilFuelUtilityProvider"
-									id="fossilFuelUtilityProvider"
-									name="fossilFuelUtilityProvider"
-									label="Utility providers"
-									type="text"
-									fullWidth
-									// variant="standard"
-									value={projectData.fossilFuelUtilityProvider}
-									onChange={handleInputChange}
-								>
-									<MenuItem value={'fossilFuel1'}>fossilFuel1</MenuItem>
-									<MenuItem value={'fossilFuel2'}>fossilFuel2</MenuItem>
-									<MenuItem value={'fossilFuel3'}>fossilFuel3</MenuItem>
-								</Select>
-							</FormControl>
-						</Item>
-					</Grid>
-					<Grid item xs={12} md={12}>
 						<ItemMap>
 							<GoogleMapDirection setGeoJson={setLocation} />
 						</ItemMap>
+					</Grid>
+					<Grid item xs={12} md={4}>
+						<Grid item xs={12} md={12}>
+							<Item>
+								<TextField
+									autoFocus
+									margin="dense"
+									id="projectName"
+									name="projectName"
+									label="Project name"
+									type="text"
+									fullWidth
+									variant="standard"
+									value={projectData.projectName}
+									onChange={handleInputChange}
+								/>
+							</Item>
+						</Grid>
+						<Grid item xs={12} md={12}>
+							<Item>
+								<FormControl fullWidth>
+									<InputLabel id="electricUtilityProvider">Electric Utility provider</InputLabel>
+									<Select
+										autoFocus
+										margin="dense"
+										labelId="electricUtilityProvider"
+										id="electricUtilityProvider"
+										name="electricUtilityProvider"
+										label="Electric Utility providers"
+										type="text"
+										fullWidth
+										// variant="standard"
+										value={projectData.electricUtilityProvider}
+										onChange={handleInputChange}
+									>
+										<MenuItem value={'electric1'}>electric1</MenuItem>
+										<MenuItem value={'electric2'}>electric2</MenuItem>
+										<MenuItem value={'electric3'}>electric3</MenuItem>
+									</Select>
+								</FormControl>
+							</Item>
+						</Grid>
+						<Grid item xs={12} md={12}>
+							<Item>
+								<FormControl fullWidth>
+									<InputLabel id="fossilFuelUtilityProvider">Fossil Fuel Utility provider</InputLabel>
+									<Select
+										autoFocus
+										margin="dense"
+										labelId="fossilFuelUtilityProvider"
+										id="fossilFuelUtilityProvider"
+										name="fossilFuelUtilityProvider"
+										label="Utility providers"
+										type="text"
+										fullWidth
+										// variant="standard"
+										value={projectData.fossilFuelUtilityProvider}
+										onChange={handleInputChange}
+									>
+										<MenuItem value={'fossilFuel1'}>fossilFuel1</MenuItem>
+										<MenuItem value={'fossilFuel2'}>fossilFuel2</MenuItem>
+										<MenuItem value={'fossilFuel3'}>fossilFuel3</MenuItem>
+									</Select>
+								</FormControl>
+							</Item>
+						</Grid>
 					</Grid>
 				</Grid>
 			</form>

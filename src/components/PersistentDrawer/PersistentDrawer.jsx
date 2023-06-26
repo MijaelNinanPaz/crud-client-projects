@@ -30,6 +30,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import ThemeButton from '../ThemeButton/ThemeButton';
 import { Projects } from '../../pages';
+import { setPageRender } from '../../state/redux/pageSwitcher/pageSwitcherSlice';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -108,6 +110,11 @@ const PersistentDrawer = ({children}) => {
 		setAnchorEl(null);
 		handleMobileMenuClose();
 	};
+
+	const dispatch=useDispatch();
+	const onClickHome = () => {
+        dispatch(setPageRender('Projects'))
+    }
 
 	const menuId = 'primary-search-account-menu';
 	const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -206,7 +213,8 @@ const PersistentDrawer = ({children}) => {
 					variant="h6"
 					noWrap
 					component="div"
-					sx={{ display: { xs: 'none', sm: 'block' } }}
+					sx={{ display: { xs: 'none', sm: 'block' }, cursor:"pointer" }}
+					onClick={onClickHome}
 				>
 					Cool Calc
 				</Typography>
@@ -227,22 +235,22 @@ const PersistentDrawer = ({children}) => {
 					</Badge>
 					</IconButton>
 					<IconButton
-					size="large"
-					aria-label="show 17 new notifications"
-					color="inherit"
+						size="large"
+						aria-label="show 17 new notifications"
+						color="inherit"
 					>
 					<Badge badgeContent={17} color="error">
 						<NotificationsIcon />
 					</Badge>
 					</IconButton>
 					<IconButton
-					size="large"
-					edge="end"
-					aria-label="account of current user"
-					aria-controls={menuId}
-					aria-haspopup="true"
-					onClick={handleProfileMenuOpen}
-					color="inherit"
+						size="large"
+						edge="end"
+						aria-label="account of current user"
+						aria-controls={menuId}
+						aria-haspopup="true"
+						onClick={handleProfileMenuOpen}
+						color="inherit"
 					>
 					{/* <AccountCircle /> */}
 					<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ width: 24, height: 24 }} />

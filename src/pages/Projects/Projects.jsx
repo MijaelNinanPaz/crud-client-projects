@@ -1,14 +1,14 @@
 import React from 'react'
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import { ProjectsTable } from './ProjectsTable';
 import DataGridProjects from './ProjectsTable/DataGridProjects';
 import { Box, Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setPageRender } from '../../state/redux/pageSwitcher/pageSwitcherSlice';
 
 const Projects = () => {
-
+    const dispatch = useDispatch()
     const onClickNew = () => {
-        console.log("holi")
+        dispatch(setPageRender('ProjectLocation'))
     }
     return (
         <>
